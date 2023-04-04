@@ -29,6 +29,9 @@ public class Shop {
             totalprice += productsList.get(i).getPrice() * productsAmount.get(i).intValue();
         }
         /// Disminuir productos
+        for (int i = 0; i < productsList.size(); i++) {
+            inventory.decreaseProduct(productsList.get(i).getName(), productsAmount.get(i));
+        }
     }
 
     public String getProductsList(){
