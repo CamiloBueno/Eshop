@@ -35,8 +35,27 @@ public class SearchEngineProduct {
         }
         return null;
     }
-    public List<Product> sliceArrayList(int start, int end){
-        return productsList.subList(start, end);
+
+    public Product binarySearchOfProductUsingNumericValue( Double value, String typeVariable){
+        sortUsingAVariable(typeVariable, true);
+        int low = 0;
+        int high= productsList.size()-1;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            Double valueToCompare = getNumericValueFromProductList(mid, typeVariable);
+            if(valueToCompare!=-1){
+                if(value.compareTo(valueToCompare) > 0){
+                    low = mid+1;
+                }else if(value.compareTo(valueToCompare) < 0){
+                    high = mid-1;
+                }else{
+                    return productsList.get(mid);
+                }
+            }else{
+                break;
+            }
+        }
+        return null;
     }
 
     private String getStringValueFromProductList(int index, String value){

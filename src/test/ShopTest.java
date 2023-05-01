@@ -61,6 +61,5 @@ public class ShopTest {
 
         assertEquals(1 , mercadolibre.getOrders().size());
         assertEquals("Camilo", mercadolibre.getOrders().get(0).getBuyerName());
-
     }
 }

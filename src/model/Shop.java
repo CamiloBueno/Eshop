@@ -30,7 +30,6 @@ public class Shop {
         order.setTotalPrice(totalPrice);
         ordersList.add(order);
     }
-
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();
         String list ="";
