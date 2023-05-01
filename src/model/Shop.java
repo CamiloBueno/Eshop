@@ -18,29 +18,26 @@ public class Shop {
         inventory.addProduct(product);
     }
 
-    public void deleteProduct(String id){
-
-    }
-
-    public void createOrder(String buyername, LocalDateTime date, ArrayList<Product> productsList, ArrayList<Integer> productsAmount){
-        /// calcular el precio
-        double totalprice = 0;
-        for (int i = 0; i < productsList.size(); i++) {
-            totalprice += productsList.get(i).getPrice() * productsAmount.get(i).intValue();
+    public void createOrder(Order order, ArrayList<Integer> productsAmount){
+        /// Calcular el precio y disminuir productos
+        ArrayList<Product> productList = order.getProductsList();
+        double totalPrice = 0;
+        for (int i = 0; i < productList.size(); i++) {
+            Product currentProduct = productList.get(i);
+            totalPrice += currentProduct.getPrice() * productsAmount.get(i);
+            inventory.purchaseProduct(currentProduct.getName(), productsAmount.get(i));
         }
-        /// Disminuir productos
-        for (int i = 0; i < productsList.size(); i++) {
-            inventory.decreaseProduct(productsList.get(i).getName(), productsAmount.get(i));
-        }
+        order.setTotalPrice(totalPrice);
+        ordersList.add(order);
     }
 
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();
-        String list ="List of products\n";
+        String list ="";
         int index=0;
         for (int i = 0; i < inventoryAux.size(); i++) {
             index = i+1;
-            list += index+". "+inventoryAux.get(i).getName()+"\n";
+            list += index+". "+inventoryAux.get(i).toString();
         }
         return list;
     }
@@ -49,19 +46,19 @@ public class Shop {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Inventory getInventory() {
         return inventory;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public Product getProductByIndex(int option) {
+        return inventory.getByIndex(option);
     }
 
-    public Product getProductByIndex(int option) {
-        return inventory.getByIndex(option-1);
+    public ArrayList<Order> getOrders(){
+        return ordersList;
+    }
+
+    public void setOrderList(ArrayList<Order> orderList) {
+        this.ordersList = orderList;
     }
 }

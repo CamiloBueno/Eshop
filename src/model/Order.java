@@ -8,10 +8,9 @@ public class Order {
     private ArrayList<Product> productsList;
     private double totalPrice;
     private LocalDateTime datePurchase;
-    public Order(String buyerName, ArrayList<Product> productsList, double totalPrice, LocalDateTime datePurchase) {
+    public Order(String buyerName, ArrayList<Product> productsList, LocalDateTime datePurchase) {
         this.buyerName = buyerName;
         this.productsList = productsList;
-        this.totalPrice = totalPrice;
         this.datePurchase = datePurchase;
     }
 

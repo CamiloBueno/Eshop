@@ -1,12 +1,11 @@
 package model;
 
-public class Product implements Comparable<String> {
-
+public class Product {
      private String name;
      private String description;
      private double price;
      private int amount;
-     private String category;
+     private Category category;
      private int purchasedAmount;
 
     public Product(String name, String description, double price, int amount, int category) {
@@ -16,7 +15,7 @@ public class Product implements Comparable<String> {
         this.amount = amount;
         setCategory(category);
         purchasedAmount = 0;
-    }
+     }
 
     public String getDescription() {
         return description;
@@ -46,17 +45,40 @@ public class Product implements Comparable<String> {
         return amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
     public void setCategory(int category) {
-        //// AQUI REALIZAMOS LA LOGICA DE LA CATEGORIA
-        //this.category = category;
+        switch(category){
+            case 1:
+                this.category = Category.BOOKS;
+                break;
+            case 2:
+                this.category = Category.ELECTRONICS;
+                break;
+            case 3:
+                this.category = Category.CLOTHES;
+                break;
+            case 4:
+                this.category = Category.ACCESORIES;
+                break;
+            case 5:
+                this.category = Category.FOODANDDRINK;
+                break;
+            case 6:
+                this.category = Category.STATIONERY;
+                break;
+            case 7:
+                this.category = Category.SPORTS;
+                break;
+            case 8:
+                this.category = Category.BEAUTYCARE;
+                break;
+            case 9:
+                this.category = Category.GAMESANDTOYS;
+                break;
+        }
     }
 
     public int getPurchasedAmount() {
@@ -69,17 +91,15 @@ public class Product implements Comparable<String> {
 
     @Override
     public String toString(){
-        return "name: "+name+" | price: "+price+" | Amount: "+amount;
+        return "Name: "+name+" | Price: "+price+" | Amount: "+amount +" | Description: "+ description+ "\n";
     }
 
-    @Override
-    public int compareTo(String secondName) {
-        if(name.compareTo(secondName)<0){
-            return -1;
-        }else if(name.compareTo(secondName)>0){
-            return 1;
-        }else{
-            return 0;
-        }
+    public void applyChangesWithPurchase(int decreaseAmount) {
+        amount -= decreaseAmount;
+        purchasedAmount += decreaseAmount;
+    }
+
+    public void increaseAmount(int amountToIncrease) {
+        amount += amountToIncrease;
     }
 }
