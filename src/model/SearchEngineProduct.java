@@ -58,6 +58,23 @@ public class SearchEngineProduct {
         return null;
     }
 
+    public int binarySearchOfIndexGivingANumericValue(Double value, String typeVariable){
+        sortUsingAVariable(typeVariable, true);
+        int low = 0;
+        int high= productsList.size()-1;
+        int mid = 0;
+        while(low<=high){
+            mid = low + (high-low)/2;
+            Double valueToCompare = getNumericValueFromProductList(mid, typeVariable);
+            if(value.compareTo(valueToCompare) < 0){
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return mid;
+    }
+
     private String getStringValueFromProductList(int index, String value){
         switch (value){
             case "name":
