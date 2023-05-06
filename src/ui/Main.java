@@ -2,8 +2,6 @@ package ui;
 import model.Order;
 import model.Product;
 import model.Shop;
-import java.io.*;
-import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,7 +17,6 @@ public class Main {
 
     public static void main(String [] args){
         Main main = new Main("Mercadolibre");
-        main.menu();
     }
 
     public void menu(){
@@ -60,7 +57,6 @@ public class Main {
     private String showProductsList(){
         return "Available products:\n"+mercadolibre.getProductsList()+"\nEnter to exit....";
     }
-
     private String createOrder() {
         String msg="";
         System.out.print("Write the buyer name: ");

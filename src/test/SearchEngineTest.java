@@ -15,6 +15,9 @@ public class SearchEngineTest {
     private ArrayList<Product> productsList;
     private Inventory inventory;
     private SearchEngineProduct searchEngine;
+    public void setUp0(){
+        inventory = new Inventory();
+    }
 
     /// Este escenario crea productos y los añade al arreglo de productList
     public void setUp1(){
@@ -32,6 +35,18 @@ public class SearchEngineTest {
     }
 
     public void setUp2(){
+        setUp1();
+        productsList.add(new Product ("Mascarilla Arroz", "Para pieles sedosas", 2500, 10, 8));
+        productsList.add(new Product ("Masa de Arepas", "Para ricas arepas", 12500, 10, 8));
+        productsList.add(new Product ("Mascara Halloween", "Para asustar a todos", 10000, 10, 8));
+        productsList.add(new Product ("Crema coreana", "Para pieles sedosas", 2500, 10, 8));
+        productsList.add(new Product ("Pan Mariana", "Para ricas arepas", 12500, 10, 8));
+        productsList.add(new Product ("Cruz Cristiana", "Para asustar a todos", 10000, 10, 8));
+        inventory.setProductsList(productsList);
+        searchEngine = new SearchEngineProduct(inventory.getProductsList());
+
+    }
+    public void setUp3(){
         inventory = new Inventory();
         productsList = new ArrayList<Product>();
         ///String name, String description, double price, int amount, int category
@@ -91,9 +106,24 @@ public class SearchEngineTest {
         assertEquals("Crema", searchEngine.binarySearchOfProductUsingNumericValue(15000.0, "price").getName());
     }
 
+
+    @Test
+    public void bsProductUsingRangeOfNumericValueTest() {
+        setUp3();
+        double min = 550.0;
+        double max = 1000.0;
+        String[] productNames = {"Exfoliante Arcilla", "Crema", "Crema Arawak", "Crema Bonita", "Crema Cicatrizante"};
+        List<Product> results = searchEngine.bsProductUsingRangeOfNumericValue(min, max, "price");
+        for (int i = 0; i < results.size(); i++) {
+            Product aux = results.get(i);
+            assertTrue(aux.getPrice() > min && aux.getPrice() < max);
+            assertEquals(productNames[i], aux.getName());
+        }
+    }
+
     @Test
     public void simpleBinarySearchOfNumericValueTest() {
-        setUp2();
+        setUp3();
         double min = 550.0;
         double max = 1000.0;
         int minIndex= searchEngine.binarySearchOfIndexGivingANumericValue(min, "price");
@@ -102,5 +132,17 @@ public class SearchEngineTest {
         assertEquals(8 , maxIndex);
         assertTrue(inventory.getByIndex(minIndex).getPrice()>min);
         assertTrue(inventory.getByIndex(maxIndex-1).getPrice()<max);
+    }
+
+    @Test
+    public void sliceArrayListTest(){
+        setUp3();
+        List<Product> productsSlice1 = searchEngine.sliceArrayList(0,4);
+        assertEquals("Jabon", productsSlice1.get(0).getName());
+        assertEquals("Crema Cicatrizante", productsSlice1.get(3).getName());
+
+        List<Product> productsSlice2 = searchEngine.sliceArrayList(4,7);
+        assertEquals("Mascarilla", productsSlice2.get(0).getName());
+        assertEquals("Crema Arawak", productsSlice2.get(4).getName());
     }
 }

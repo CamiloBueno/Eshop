@@ -58,6 +58,16 @@ public class SearchEngineProduct {
         return null;
     }
 
+    public List<Product> sliceArrayList(int start, int end){
+        return productsList.subList(start, end);
+    }
+
+    public List<Product> bsProductUsingRangeOfNumericValue(Double min, Double max, String typeVariable){
+        int start = binarySearchOfIndexGivingANumericValue( min, typeVariable);
+        int end = binarySearchOfIndexGivingANumericValue( max, typeVariable);
+        return sliceArrayList(start, end);
+    }
+
     public int binarySearchOfIndexGivingANumericValue(Double value, String typeVariable){
         sortUsingAVariable(typeVariable, true);
         int low = 0;

@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Shop {
@@ -30,6 +29,7 @@ public class Shop {
         order.setTotalPrice(totalPrice);
         ordersList.add(order);
     }
+
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();
         String list ="";

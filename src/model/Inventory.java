@@ -27,7 +27,6 @@ public class Inventory {
         return aux;
     }
 
-
     public Product getByIndex(int index){
         return productsList.get(index);
     }

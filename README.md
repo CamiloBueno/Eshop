@@ -1,10 +1,10 @@
-### Iteracion 4
+### Iteracion 5
 
-Densidad de errores-fallos = 0/10 = 0  
+Densidad de errores-fallos = 0/11 = 0  
 
 Confiabilidad = 1 - 0 = 1
 
-Completitud = 10/10 = 1 
+Completitud = 11/11 = 1
 
 _________
 

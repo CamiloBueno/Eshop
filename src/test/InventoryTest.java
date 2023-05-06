@@ -50,4 +50,5 @@ public class InventoryTest {
         assertEquals(7, inventory.purchaseProduct("Jabon", 3).getAmount());
         assertEquals(2, inventory.purchaseProduct("Exfoliante", 8).getAmount());
     }
+    
 }
