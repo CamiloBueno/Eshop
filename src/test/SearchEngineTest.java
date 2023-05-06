@@ -106,6 +106,26 @@ public class SearchEngineTest {
         assertEquals("Crema", searchEngine.binarySearchOfProductUsingNumericValue(15000.0, "price").getName());
     }
 
+    @Test
+    public void binarySearchOfCoincidencesGivingNameTest(){
+        setUp2();
+        String prefix ="Mas";
+        ArrayList<Product> productsFounded = searchEngine.bSOfCoincidencesUsingSuffixOrPrefix(true, prefix);
+        assertEquals(4, productsFounded.size());
+        for (int i = 0; i < productsFounded.size(); i++) {
+            assertTrue(productsFounded.get(i).getName().startsWith(prefix));
+        }
+
+        /*
+        String suffix = "ana";
+        ArrayList<Product> productsFounded2 = inventory.bSOfCoincidencesUsingSuffixOrPrefix(false, suffix);
+        assertEquals(3, productsFounded2.size());
+        for (int i = 0; i < productsFounded2.size(); i++) {
+            assertTrue(productsFounded2.get(i).getName().endsWith(suffix));
+        }
+        assertEquals(0,inventory.bSOfCoincidencesUsingSuffixOrPrefix(true,"Zo").size());
+         */
+    }
 
     @Test
     public void bsProductUsingRangeOfNumericValueTest() {
@@ -140,6 +160,7 @@ public class SearchEngineTest {
         List<Product> productsSlice1 = searchEngine.sliceArrayList(0,4);
         assertEquals("Jabon", productsSlice1.get(0).getName());
         assertEquals("Crema Cicatrizante", productsSlice1.get(3).getName());
+
 
         List<Product> productsSlice2 = searchEngine.sliceArrayList(4,7);
         assertEquals("Mascarilla", productsSlice2.get(0).getName());

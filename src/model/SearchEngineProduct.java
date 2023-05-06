@@ -58,6 +58,36 @@ public class SearchEngineProduct {
         return null;
     }
 
+    public  ArrayList<Product> bSOfCoincidencesUsingSuffixOrPrefix( boolean criteria, String value){
+        sortUsingAVariable("name", true);
+        ArrayList<Product> coincidences = new ArrayList<>();
+        int low = 0;
+        int high= productsList.size()-1;
+        while(low<=high){
+            int mid = low + (high-low/2);
+            String currentWord = productsList.get(mid).getName();
+            if(criteria){
+                if (currentWord.startsWith(value)){
+                    coincidences.add(productsList.get(mid));
+                }
+            }else{
+                if (currentWord.endsWith(value)){
+                    coincidences.add(productsList.get(mid));
+                }
+                int endIndex = currentWord.length()-1;
+                int beginIndex = endIndex-value.length();
+                currentWord = currentWord.substring(beginIndex, endIndex);
+            }
+
+            if (currentWord.compareTo(value) < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return coincidences;
+    }
+
     public List<Product> sliceArrayList(int start, int end){
         return productsList.subList(start, end);
     }
@@ -107,7 +137,6 @@ public class SearchEngineProduct {
                 return -1.0;
         }
     }
-
     public void setProductList(ArrayList<Product> productsList) {
         this.productsList = productsList;
     }
