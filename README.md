@@ -1,10 +1,10 @@
-### Iteracion 7
+### Iteracion 8
 
-Densidad de errores-fallos = 0/14 = 0 
+Densidad de errores-fallos = 0/15 = 0 
 
 Confiabilidad = 1 - 0 = 1
 
-Completitud = 14/14 = 1
+Completitud = 15/15 = 1
 
 _________
 

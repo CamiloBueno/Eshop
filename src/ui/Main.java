@@ -8,7 +8,6 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Main {
     private Scanner scanner;
     private Shop mercadolibre;
@@ -42,6 +41,7 @@ public class Main {
                 System.out.println(addProduct());
                 break;
             case 2:
+                System.out.println(deleteProduct());
                 break;
             case 3:
                 System.out.println(increaseProduct());
@@ -57,10 +57,17 @@ public class Main {
                 break;
         }
         }while(option!=7);
-     }
 
+    }
     private String showProductsList(){
         return "Available products:\n"+mercadolibre.getProductsList()+"\nEnter to exit....";
+    }
+
+    private String deleteProduct() {
+        System.out.println("Choose the product to delete:\n");
+        System.out.println(mercadolibre.getProductsList());
+        int productId = Integer.parseInt(scanner.nextLine())-1;
+        return mercadolibre.deleteProduct(productId);
     }
 
     private String increaseProduct() {

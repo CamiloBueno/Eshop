@@ -27,6 +27,9 @@ public class Inventory {
         return aux;
     }
 
+    public Product deleteProduct(int productId){
+        return productsList.remove(productId);
+    }
 
     public Product getByIndex(int index){
         return productsList.get(index);

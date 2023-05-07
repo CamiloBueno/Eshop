@@ -50,4 +50,25 @@ public class InventoryTest {
         assertEquals(7, inventory.purchaseProduct("Jabon", 3).getAmount());
         assertEquals(2, inventory.purchaseProduct("Exfoliante", 8).getAmount());
     }
+
+    @Test
+    public void deleteProductTest(){
+        setUp2();
+        /// Jabon, Shampoo, Mascarilla, Exfoliante, Crema
+
+        assertEquals("Shampoo", inventory.deleteProduct(1).getName());
+        assertEquals(4, inventory.getProductsList().size());
+        /// Jabon, Mascarilla, Exfoliante, Crema
+
+        assertEquals("Exfoliante", inventory.deleteProduct(2).getName());
+        assertEquals(3, inventory.getProductsList().size());
+        /// Jabon, Mascarilla, Crema
+
+        assertEquals("Jabon", inventory.deleteProduct(0).getName());
+        assertEquals(2, inventory.getProductsList().size());
+        /// Mascarilla, Crema
+
+        assertEquals("Crema", inventory.deleteProduct(1).getName());
+        assertEquals(1, inventory.getProductsList().size());
+    }
 }

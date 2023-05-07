@@ -18,6 +18,13 @@ public class Shop {
         inventory.addProduct(product);
     }
 
+    public String deleteProduct(int productId){
+        if (inventory.deleteProduct(productId) !=null)
+            return "Product deleted successfully";
+        else
+            return "Error deleting product. Try again";
+    }
+
     public void createOrder(Order order, ArrayList<Integer> productsAmount){
         /// Calcular el precio y disminuir productos
         ArrayList<Product> productList = order.getProductsList();
