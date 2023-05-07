@@ -63,4 +63,15 @@ public class ShopTest {
         assertEquals("Camilo", mercadolibre.getOrders().get(0).getBuyerName());
 
     }
+
+    @Test
+    public void increaseAmountOfProductTest(){
+        setUp1();
+        mercadolibre.increaseAmountOfProduct(1, 15);
+        mercadolibre.increaseAmountOfProduct(2, 8);
+        mercadolibre.increaseAmountOfProduct(3, 3);
+        assertEquals(25, mercadolibre.getProductByIndex(0).getAmount());
+        assertEquals(18, mercadolibre.getProductByIndex(1).getAmount());
+        assertEquals(13, mercadolibre.getProductByIndex(2).getAmount());
+    }
 }

@@ -1,7 +1,10 @@
 package ui;
+
 import model.Order;
 import model.Product;
 import model.Shop;
+import java.io.*;
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,6 +20,7 @@ public class Main {
 
     public static void main(String [] args){
         Main main = new Main("Mercadolibre");
+        main.menu();
     }
 
     public void menu(){
@@ -40,6 +44,7 @@ public class Main {
             case 2:
                 break;
             case 3:
+                System.out.println(increaseProduct());
                 break;
             case 4:
                 break;
@@ -52,11 +57,21 @@ public class Main {
                 break;
         }
         }while(option!=7);
-    }
+     }
 
     private String showProductsList(){
         return "Available products:\n"+mercadolibre.getProductsList()+"\nEnter to exit....";
     }
+
+    private String increaseProduct() {
+        System.out.println("Choose one product, using the index, to increase it amount:\n");
+        System.out.println(mercadolibre.getProductsList());
+        int productIndex = Integer.parseInt(scanner.nextLine());
+        System.out.print("Write the amount to increase: ");
+        int amount = Integer.parseInt(scanner.nextLine());
+        return mercadolibre.increaseAmountOfProduct(productIndex, amount);
+    }
+
     private String createOrder() {
         String msg="";
         System.out.print("Write the buyer name: ");

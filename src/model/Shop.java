@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Shop {
@@ -30,6 +31,16 @@ public class Shop {
         ordersList.add(order);
     }
 
+    public String increaseAmountOfProduct(int productIndex, int amount) {
+        try{
+            Product aux = inventory.getByIndex(productIndex-1);
+            aux.increaseAmount(amount);
+            return "Product edited successfully!" +
+                    "\nNew product list:\n"+getProductsList();
+        }catch(IndexOutOfBoundsException e){
+            return "Indice incorrecto";
+        }
+    }
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();
         String list ="";

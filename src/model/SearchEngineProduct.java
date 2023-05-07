@@ -137,6 +137,7 @@ public class SearchEngineProduct {
                 return -1.0;
         }
     }
+
     public void setProductList(ArrayList<Product> productsList) {
         this.productsList = productsList;
     }
