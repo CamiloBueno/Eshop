@@ -1,5 +1,6 @@
 package ui;
 
+import com.google.gson.reflect.TypeToken;
 import model.Order;
 import model.Product;
 import model.Shop;
@@ -8,6 +9,8 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import com.google.gson.Gson;
+
 public class Main {
     private Scanner scanner;
     private Shop mercadolibre;
@@ -19,6 +22,7 @@ public class Main {
 
     public static void main(String [] args){
         Main main = new Main("Mercadolibre");
+        main.loadProducts();
         main.menu();
     }
 
@@ -57,8 +61,41 @@ public class Main {
                 break;
         }
         }while(option!=7);
-
+        saveProducts();
     }
+
+    private void loadProducts() {
+        String productsPath = "src/data/products.json";
+        try {
+            /// Importar la libreria Gson - (Google Json)
+            Gson gson = new Gson();
+            FileReader productsReader = new FileReader(productsPath);
+
+            /// La documentacion de Google aconseja usar esto para deserializar
+            Type productsListType = new TypeToken<ArrayList<Product>>(){}.getType();
+
+            ArrayList<Product> productList = gson.fromJson(productsReader, productsListType);
+            mercadolibre.getInventory().setProductsList(productList);
+        } catch (FileNotFoundException e) {
+            new File(productsPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void saveProducts() {
+        Gson gson = new Gson();
+        String productListSerialization = gson.toJson(mercadolibre.getInventory().getProductsList());
+        try {
+            FileWriter productsWriter = new FileWriter("src/data/products.json");
+            productsWriter.write(productListSerialization);
+            productsWriter.flush();
+            productsWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private String showProductsList(){
         return "Available products:\n"+mercadolibre.getProductsList()+"\nEnter to exit....";
     }

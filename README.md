@@ -1,8 +1,8 @@
-### Iteracion 8
+### Iteracion 9
 
-Densidad de errores-fallos = 0/15 = 0 
+Densidad de errores-fallos = 2/15 = 0,1333 
 
-Confiabilidad = 1 - 0 = 1
+Confiabilidad = 1 - 0,133 = 0,866
 
 Completitud = 15/15 = 1
 
