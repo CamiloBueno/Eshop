@@ -44,13 +44,14 @@ public class Main {
         do {
             System.out.println(
                     "Hello! Welcome to " + mercadolibre.getName() + "\n Choose an option:" +
-                            "\n1. Create a product *" +
-                            "\n2. Delete product *" +
-                            "\n3. Increase the amount of one product *" +
+                            "\n1. Create a product" +
+                            "\n2. Delete product" +
+                            "\n3. Increase the amount of one product" +
                             "\n4. Search product or Order" +
-                            "\n5. Create order *" +
-                            "\n6. Show list of products *" +
-                            "\n7. Exit"
+                            "\n5. Create order" +
+                            "\n6. Show list of Products"+
+                            "\n7. Show list of Orders"+
+                            "\n8. Exit"
             );
             option = Integer.parseInt(scanner.nextLine());
             switch (option) {
@@ -71,12 +72,18 @@ public class Main {
                     break;
                 case 6:
                     System.out.println(showProductsList());
-                    scanner.nextLine();
+                    break;
+                case 7:
+                    System.out.println(showOrderList());
                     break;
             }
-        } while (option != 7);
+        } while (option != 8);
         saveOrders();
         saveProducts();
+    }
+
+    private String showOrderList() {
+        return mercadolibre.getOrderList();
     }
 
     private void loadProducts() {
@@ -304,7 +311,7 @@ public class Main {
       return options;
     };
     private String showProductsList(){
-        return "Available products:\n"+mercadolibre.getProductsList()+"\nEnter to exit....";
+        return "\n"+mercadolibre.getProductsList()+"\n";
     }
 
     private String deleteProduct() {
@@ -330,9 +337,10 @@ public class Main {
         LocalDateTime orderDate = LocalDateTime.now();
         ArrayList<Product> productsList = new ArrayList<Product>();
         ArrayList<Integer> productsAmount = new ArrayList<Integer>();
+        ArrayList<Product> productsToExclude = new ArrayList<>();
         int option = -1;
         while(option!=0){
-            System.out.println("Select a product: \n"+ mercadolibre.getProductsList() + "\n0.To EXIT");
+            System.out.println("Select a product: \n"+ mercadolibre.getProductsListExcluidingProducts(productsToExclude) + "\n0.To EXIT");
             option = Integer.parseInt(scanner.nextLine());
             if(option>0){
                 Product aux = mercadolibre.getProductByIndex(option-1);
@@ -340,6 +348,7 @@ public class Main {
                 int amount = Integer.parseInt(scanner.nextLine());
                 productsAmount.add(amount);
                 productsList.add(aux);
+                productsToExclude.add(aux);
             }
         }
         Order order = new Order(buyerName, productsList, orderDate);

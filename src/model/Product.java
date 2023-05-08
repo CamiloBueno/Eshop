@@ -42,6 +42,10 @@ public class Product {
         this.price = price;
     }
 
+    public void setAmount(int amount){
+        this.amount = amount;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -85,6 +89,10 @@ public class Product {
     @Override
     public String toString(){
         return "Name: "+name+" | Price: "+price+" | Amount: "+amount +" | Description: "+ description+ "\n";
+    }
+
+    public String toStringToBuyers(){
+        return "Name: "+name+" | Price: "+price+ " | Description: "+ description;
     }
 
     public void applyChangesWithPurchase(int decreaseAmount) {

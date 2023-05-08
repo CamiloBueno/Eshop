@@ -1,4 +1,4 @@
-### Iteracion 12
+### Iteracion 13
 
 Densidad de errores-fallos = 2/15 = 0,1333 
 

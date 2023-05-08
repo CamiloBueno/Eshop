@@ -41,7 +41,11 @@ public class Shop {
             totalPrice += currentProduct.getPrice() * productsAmount.get(i);
             inventory.purchaseProduct(currentProduct.getName(), productsAmount.get(i));
         }
+        if(ordersList == null){
+            ordersList =  new ArrayList<>();
+        }
         order.setTotalPrice(totalPrice);
+        order.setAmountOfProducts(productsAmount);
         ordersList.add(order);
     }
 
@@ -84,11 +88,24 @@ public class Shop {
     }
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();
-        String list ="";
+        String list ="LIST OF PRODUCTS\n";
         int index=0;
         for (int i = 0; i < inventoryAux.size(); i++) {
             index = i+1;
             list += index+". "+inventoryAux.get(i).toString();
+        }
+        return list;
+    }
+
+    public String getOrderList(){
+        String list ="LIST OF ORDERS\n";
+        int index=0;
+        for (int i = 0; i < ordersList.size(); i++) {
+            index = i+1;
+            list += index+". "+ordersList.get(i).toString()+"\n";
+            list+="---------------------------------------------------------------\n";
+            list+= ordersList.get(i).getProductList();
+            list+="################################################################\n";
         }
         return list;
     }
@@ -113,4 +130,13 @@ public class Shop {
         this.ordersList = orderList;
     }
 
+    public String getProductsListExcluidingProducts(ArrayList excludedProducts) {
+        String list ="";
+        for (int i = 0; i < inventory.getProductsList().size(); i++) {
+            if(!excludedProducts.contains(inventory.getProductsList().get(i))){
+                list+= (i+1) +"."+inventory.getProductsList().get(i).toString();
+            }
+        }
+        return list;
+    }
 }
