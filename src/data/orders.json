@@ -1,1 +1,1 @@
-null
+[{"buyerName":"Camilo Bueno","productsList":[{"name":"Jabon Rey","description":"Para pieles limpias","price":2500.0,"amount":6,"category":9,"purchasedAmount":4},{"name":"Shampoo","description":"Para cabellos sedosos","price":12500.0,"amount":3,"category":9,"purchasedAmount":7}],"totalPrice":97500.0,"datePurchase":{"date":{"year":2023,"month":5,"day":7},"time":{"hour":23,"minute":14,"second":11,"nano":574000000}}}]

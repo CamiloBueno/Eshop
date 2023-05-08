@@ -7,11 +7,18 @@ public class Shop {
     private Inventory inventory;
     private ArrayList<Order> ordersList;
 
+    private SearchEngineOrder searchEngineOrder;
+
     private final String[] OPTIONS ={"name", "price", "category", "purchasedAmount"};
+    private final String[] OPTIONS_ORDER ={"buyername", "totalprice", "date"};
+
+    private final String[] OPTIONS_RANGE ={ "price", "amount", "purchasedAmount"};
+
     public Shop(String name) {
         this.name = name;
         inventory = new Inventory();
         ordersList = new ArrayList<Order>();
+        this.searchEngineOrder = new SearchEngineOrder(ordersList);
     }
 
     public void addProduct(Product product){
@@ -56,19 +63,24 @@ public class Shop {
 
     public String simpleProductSearchStringValue(int variableSearch, String valueToSearch, int[] sortOptions, boolean isCategory) {
         String variableToSearchTransformed = OPTIONS[variableSearch-1];
-        return "\n RESULTS: \n"+inventory.simpleProductSearchStringValue(variableToSearchTransformed, valueToSearch, sortOptions);
+        return "\nRESULTS: \n"+inventory.simpleProductSearchStringValue(variableToSearchTransformed, valueToSearch, sortOptions);
     }
 
-    public String complexSearchUsingNumericRange(int variableToSearch, int minValue, int maxValue, int[] searchOptions) {
-        return null;
+    public String complexSearchUsingNumericRange(int variableToSearch, Double minValue, Double maxValue, int[] sortOptions) {
+        String variableToSearchTransformed = OPTIONS_RANGE[variableToSearch-1];
+        return "\n RESULTS: \n"+inventory.complexProductSearchUsingNumericValues(variableToSearchTransformed, minValue, maxValue, sortOptions);
     }
 
-    public String searchOrderUsingNumericValue(int typeSearch, int valueToSearch) {
-        return null;
+    public String searchOrderUsingNumericValue(int typeSearch, Double valueToSearch) {
+        searchEngineOrder.setOrderlist(ordersList);
+        String variableSearch = OPTIONS_ORDER[typeSearch-1];
+        return searchEngineOrder.binarySearchOfOrderUsingNumericValue(valueToSearch, variableSearch).toString();
     }
 
     public String searchOrderUsingStringValue(int typeSearch, String valueToSearch) {
-        return null;
+        searchEngineOrder.setOrderlist(ordersList);
+        String variableSearch = OPTIONS_ORDER[typeSearch-1];
+        return "RESULTS: "+ searchEngineOrder.binarySearchOfOrderUsingStringValue(valueToSearch, variableSearch).toString();
     }
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();

@@ -89,6 +89,9 @@ public class SearchEngineProduct {
     }
 
     public List<Product> sliceArrayList(int start, int end){
+        if(start>1){
+            start = start-1;
+        }
         return productsList.subList(start, end);
     }
 
@@ -106,7 +109,9 @@ public class SearchEngineProduct {
         while(low<=high){
             mid = low + (high-low)/2;
             Double valueToCompare = getNumericValueFromProductList(mid, typeVariable);
-            if(value.compareTo(valueToCompare) < 0){
+            if(value.compareTo(valueToCompare)==0) {
+                return mid;
+            }else if(value.compareTo(valueToCompare) < 0){
                 high = mid-1;
             }else{
                 low = mid+1;

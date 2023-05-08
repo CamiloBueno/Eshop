@@ -1,5 +1,6 @@
 package model;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Inventory {
     private ArrayList<Product> productsList;
@@ -52,5 +53,17 @@ public class Inventory {
         Product product = searchEngine.binarySearchOfProductUsingStringValue(valueToSearch, variableToSearchTransformed);
         return product.toString();
     }
+
+    public String complexProductSearchUsingNumericValues(String variableToSearch,Double min, Double max, int[] sortOptions){
+        searchEngine.setProductList(productsList);
+        List resultsList = searchEngine.bsProductUsingRangeOfNumericValue(min, max, variableToSearch);
+        String result = "";
+        for (int i = 0; i < resultsList.size(); i++) {
+            result+=resultsList.get(i).toString();
+        }
+        return result;
+    }
+
 }
+
 

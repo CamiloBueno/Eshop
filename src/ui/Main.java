@@ -240,10 +240,10 @@ public class Main {
         }
 
         System.out.print("Write a minimum value: ");
-        int minValue = Integer.parseInt(scanner.nextLine());
+        Double minValue = Double.parseDouble(scanner.nextLine());
 
         System.out.print("Write a maximum value: ");
-        int maxValue = Integer.parseInt(scanner.nextLine());
+        Double maxValue = Double.parseDouble(scanner.nextLine());
 
         int[] searchOptions = sortProductsSearchMenu();
 
@@ -258,19 +258,19 @@ public class Main {
         System.out.println(options);
         int typeSearch =Integer.parseInt(scanner.nextLine());
 
-        while(typeSearch !=1 && typeSearch !=2){
+        while(typeSearch<0 || typeSearch>3){
             System.out.println(options);
             typeSearch =Integer.parseInt(scanner.nextLine());
         }
         if(typeSearch == 2 ){
             try{
                 System.out.print("Write the value to search: ");
-                int valueToSearch =Integer.parseInt(scanner.nextLine());
+                Double valueToSearch =Double.parseDouble(scanner.nextLine());
                 return mercadolibre.searchOrderUsingNumericValue(typeSearch,valueToSearch);
             }catch (NumberFormatException e){
                 System.out.print("Write a valid value. ");
             }
-        }else if(typeSearch == 1){
+        }else if(typeSearch == 1 || typeSearch ==3){
             System.out.print("Write the value to search: ");
             String valueToSearch = scanner.nextLine();
             return mercadolibre.searchOrderUsingStringValue(typeSearch, valueToSearch);
@@ -359,7 +359,7 @@ public class Main {
         int amount = Integer.parseInt(scanner.nextLine());
         int category = 0;
         while(category < 1 && category > 8){
-            System.out.print(showCategories());
+            System.out.println(showCategories());
             category = Integer.parseInt(scanner.nextLine());
         }
         Product product = new Product(name, description, price, amount, 0,category);

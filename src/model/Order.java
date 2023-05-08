@@ -45,4 +45,12 @@ public class Order {
     public void setDatePurchase(LocalDateTime datePurchase) {
         this.datePurchase = datePurchase;
     }
+
+    public String transformDate(){
+        return datePurchase.toString().substring(0,10).replace("-","/");
+    }
+    @Override
+    public String toString(){
+        return "Buyer name: "+ buyerName + " | Total price: "+totalPrice+" | Date: " + transformDate();
+    }
 }

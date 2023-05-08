@@ -1,10 +1,10 @@
-### Iteracion 11
+### Iteracion 12
 
 Densidad de errores-fallos = 2/15 = 0,1333 
 
 Confiabilidad = 1 - 0,133 = 0,866
 
-Completitud = 15/15 = 1
+Completitud = 15/16 = 0,93
 
 _________
 
