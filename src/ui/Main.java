@@ -23,6 +23,7 @@ public class Main {
     public static void main(String [] args){
         Main main = new Main("Mercadolibre");
         main.loadProducts();
+        main.loadOrders();
         main.menu();
     }
 
@@ -80,6 +81,34 @@ public class Main {
             new File(productsPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void loadOrders() {
+        String ordersPath = "src/data/orders.json";
+        try {
+            Gson gson = new Gson();
+            FileReader orderReader = new FileReader(ordersPath);
+            Type orderListType = new TypeToken<ArrayList<Order>>(){}.getType();
+            ArrayList<Order> orderList = gson.fromJson(orderReader, orderListType);
+            mercadolibre.setOrderList(orderList);
+        } catch (FileNotFoundException e) {
+            new File(ordersPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void saveOrders() {
+        Gson gson = new Gson();
+        String orderListSerialization = gson.toJson(mercadolibre.getOrders());
+        try {
+            FileWriter ordersWriter = new FileWriter("src/data/orders.json");
+            ordersWriter.write(orderListSerialization);
+            ordersWriter.flush();
+            ordersWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
