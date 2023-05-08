@@ -24,11 +24,11 @@ public class SearchEngineTest {
         inventory = new Inventory();
         productsList = new ArrayList<Product>();
         ///String name, String description, double price, int amount, int category
-        productsList.add(new Product ("Jabon", "Para pieles limpias", 2500, 10, 8));
-        productsList.add(new Product ("Shampoo", "Para cabellos sedosos", 12500, 10, 8));
-        productsList.add(new Product ("Mascarilla", "Para caras sedosas", 10000, 10, 8));
-        productsList.add(new Product ("Exfoliante", "Para pieles sedosas", 2500, 10, 8));
-        productsList.add(new Product ("Crema", "Para caras sedosas", 15000, 10, 8));
+        productsList.add(new Product ("Jabon", "Para pieles limpias", 2500, 10, 0,8));
+        productsList.add(new Product ("Shampoo", "Para cabellos sedosos", 12500, 10, 0,8));
+        productsList.add(new Product ("Mascarilla", "Para caras sedosas", 10000, 10, 0,8));
+        productsList.add(new Product ("Exfoliante", "Para pieles sedosas", 2500, 10, 0,8));
+        productsList.add(new Product ("Crema", "Para caras sedosas", 15000, 10, 0,8));
         inventory.setProductsList(productsList);
         searchEngine = new SearchEngineProduct(inventory.getProductsList());
 
@@ -36,12 +36,12 @@ public class SearchEngineTest {
 
     public void setUp2(){
         setUp1();
-        productsList.add(new Product ("Mascarilla Arroz", "Para pieles sedosas", 2500, 10, 8));
-        productsList.add(new Product ("Masa de Arepas", "Para ricas arepas", 12500, 10, 8));
-        productsList.add(new Product ("Mascara Halloween", "Para asustar a todos", 10000, 10, 8));
-        productsList.add(new Product ("Crema coreana", "Para pieles sedosas", 2500, 10, 8));
-        productsList.add(new Product ("Pan Mariana", "Para ricas arepas", 12500, 10, 8));
-        productsList.add(new Product ("Cruz Cristiana", "Para asustar a todos", 10000, 10, 8));
+        productsList.add(new Product ("Mascarilla Arroz", "Para pieles sedosas", 2500, 10, 0,8));
+        productsList.add(new Product ("Masa de Arepas", "Para ricas arepas", 12500, 10, 0,8));
+        productsList.add(new Product ("Mascara Halloween", "Para asustar a todos", 10000, 10,0, 8));
+        productsList.add(new Product ("Crema coreana", "Para pieles sedosas", 2500, 10, 0,8));
+        productsList.add(new Product ("Pan Mariana", "Para ricas arepas", 12500, 10, 0,8));
+        productsList.add(new Product ("Cruz Cristiana", "Para asustar a todos", 10000, 10, 0,8));
         inventory.setProductsList(productsList);
         searchEngine = new SearchEngineProduct(inventory.getProductsList());
 
@@ -50,16 +50,16 @@ public class SearchEngineTest {
         inventory = new Inventory();
         productsList = new ArrayList<Product>();
         ///String name, String description, double price, int amount, int category
-        productsList.add(new Product ("Jabon", "Para pieles sedosas", 100, 10, 8));
-        productsList.add(new Product ("Exfoliante Coco", "Para pieles sedosas", 2000, 10, 8));
-        productsList.add(new Product ("Crema", "Para pieles sedosas", 750, 10, 8));
-        productsList.add(new Product ("Crema Cicatrizante", "Para pieles sedosas", 910, 10, 8));
-        productsList.add(new Product ("Mascarilla", "Para caras sedosas", 510, 10, 8));
-        productsList.add(new Product ("Crema Bonita", "Para pieles sedosas", 832, 10, 8));
-        productsList.add(new Product ("Crema Arawak", "Para pieles sedosas", 800, 10, 8));
-        productsList.add(new Product ("Exfoliante Bakano", "Para pieles sedosas", 1024, 10, 8));
-        productsList.add(new Product ("Exfoliante Arcilla", "Para pieles sedosas", 600, 10, 8));
-        productsList.add(new Product ("Shampoo", "Para cabellos sedosos", 500, 10, 8));
+        productsList.add(new Product ("Jabon", "Para pieles sedosas", 100, 10, 0,8));
+        productsList.add(new Product ("Exfoliante Coco", "Para pieles sedosas", 2000, 10, 0,8));
+        productsList.add(new Product ("Crema", "Para pieles sedosas", 750, 10, 0,8));
+        productsList.add(new Product ("Crema Cicatrizante", "Para pieles sedosas", 910, 10, 0,8));
+        productsList.add(new Product ("Mascarilla", "Para caras sedosas", 510, 10, 0,8));
+        productsList.add(new Product ("Crema Bonita", "Para pieles sedosas", 832, 10, 0,8));
+        productsList.add(new Product ("Crema Arawak", "Para pieles sedosas", 800, 10, 0,8));
+        productsList.add(new Product ("Exfoliante Bakano", "Para pieles sedosas", 1024, 10, 0,8));
+        productsList.add(new Product ("Exfoliante Arcilla", "Para pieles sedosas", 600, 10, 0,8));
+        productsList.add(new Product ("Shampoo", "Para cabellos sedosos", 500, 10, 0,8));
 
         inventory.setProductsList(productsList);
         searchEngine = new SearchEngineProduct(inventory.getProductsList());

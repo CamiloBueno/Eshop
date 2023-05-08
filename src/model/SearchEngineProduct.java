@@ -36,7 +36,7 @@ public class SearchEngineProduct {
         return null;
     }
 
-    public Product binarySearchOfProductUsingNumericValue( Double value, String typeVariable){
+    public Product binarySearchOfProductUsingNumericValue(Double value, String typeVariable){
         sortUsingAVariable(typeVariable, true);
         int low = 0;
         int high= productsList.size()-1;

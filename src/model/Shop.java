@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Shop {
@@ -8,6 +7,7 @@ public class Shop {
     private Inventory inventory;
     private ArrayList<Order> ordersList;
 
+    private final String[] OPTIONS ={"name", "price", "category", "purchasedAmount"};
     public Shop(String name) {
         this.name = name;
         inventory = new Inventory();
@@ -48,6 +48,28 @@ public class Shop {
             return "Indice incorrecto";
         }
     }
+
+    public String simpleProductSearchNumericValue(int variableSearch, Double valueToSearch, int[] sortOptions) {
+        String variableToSearchTransformed = OPTIONS[variableSearch-1];
+        return "\n RESULTS: \n"+inventory.simpleProductSearchNumericValue(variableToSearchTransformed, valueToSearch, sortOptions);
+    }
+
+    public String simpleProductSearchStringValue(int variableSearch, String valueToSearch, int[] sortOptions, boolean isCategory) {
+        String variableToSearchTransformed = OPTIONS[variableSearch-1];
+        return "\n RESULTS: \n"+inventory.simpleProductSearchStringValue(variableToSearchTransformed, valueToSearch, sortOptions);
+    }
+
+    public String complexSearchUsingNumericRange(int variableToSearch, int minValue, int maxValue, int[] searchOptions) {
+        return null;
+    }
+
+    public String searchOrderUsingNumericValue(int typeSearch, int valueToSearch) {
+        return null;
+    }
+
+    public String searchOrderUsingStringValue(int typeSearch, String valueToSearch) {
+        return null;
+    }
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();
         String list ="";
@@ -78,4 +100,5 @@ public class Shop {
     public void setOrderList(ArrayList<Order> orderList) {
         this.ordersList = orderList;
     }
+
 }

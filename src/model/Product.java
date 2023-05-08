@@ -5,16 +5,17 @@ public class Product {
      private String description;
      private double price;
      private int amount;
-     private Category category;
+     private int category;
+     private Category enumCategory;
      private int purchasedAmount;
 
-    public Product(String name, String description, double price, int amount, int category) {
+    public Product(String name, String description, double price, int amount, int purchasedAmount, int category) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.amount = amount;
-        setCategory(category);
-        purchasedAmount = 0;
+        this.category = category;
+        this.purchasedAmount = purchasedAmount;
      }
 
     public String getDescription() {
@@ -46,39 +47,31 @@ public class Product {
     }
 
     public Category getCategory() {
-        return category;
+        return setCategory(category);
     }
 
-    public void setCategory(int category) {
+    public Category setCategory(int category) {
         switch(category){
             case 1:
-                this.category = Category.BOOKS;
-                break;
+                return Category.BOOKS;
             case 2:
-                this.category = Category.ELECTRONICS;
-                break;
+                return Category.ELECTRONICS;
             case 3:
-                this.category = Category.CLOTHES;
-                break;
+                return Category.CLOTHES;
             case 4:
-                this.category = Category.ACCESORIES;
-                break;
+                return Category.ACCESORIES;
             case 5:
-                this.category = Category.FOODANDDRINK;
-                break;
+                return Category.FOODANDDRINK;
             case 6:
-                this.category = Category.STATIONERY;
-                break;
+                return Category.STATIONERY;
             case 7:
-                this.category = Category.SPORTS;
-                break;
+                return Category.SPORTS;
             case 8:
-                this.category = Category.BEAUTYCARE;
-                break;
+                return Category.BEAUTYCARE;
             case 9:
-                this.category = Category.GAMESANDTOYS;
-                break;
+                return Category.GAMESANDTOYS;
         }
+        return null;
     }
 
     public int getPurchasedAmount() {

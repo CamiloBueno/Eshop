@@ -1,7 +1,5 @@
 package model;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Inventory {
     private ArrayList<Product> productsList;
@@ -36,12 +34,23 @@ public class Inventory {
     }
 
     public void setProductsList(ArrayList<Product> productsList) {
-        if(productsList!=null)
-            this.productsList = productsList;
+        this.productsList = new ArrayList<>();
+        this.productsList = productsList;
     }
 
     public ArrayList<Product> getProductsList() {
         return productsList;
     }
 
+    public String simpleProductSearchNumericValue(String variableToSearchTransformed, Double valueToSearch, int[] sortOptions) {
+        searchEngine.setProductList(productsList);
+    Product product = searchEngine.binarySearchOfProductUsingNumericValue(valueToSearch, variableToSearchTransformed);
+    return product.toString();
+    }
+    public String simpleProductSearchStringValue(String variableToSearchTransformed, String valueToSearch, int[] sortOptions) {
+        searchEngine.setProductList(productsList);
+        Product product = searchEngine.binarySearchOfProductUsingStringValue(valueToSearch, variableToSearchTransformed);
+        return product.toString();
+    }
 }
+

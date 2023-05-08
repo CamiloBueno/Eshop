@@ -15,9 +15,9 @@ public class ShopTest {
     private Order order;
     public void setUp1(){
         mercadolibre = new Shop("Mercadolibre");
-        mercadolibre.addProduct(new Product("Jabon", "Para pieles sedosas", 2500, 10, 8));
-        mercadolibre.addProduct(new Product ("Shampoo", "Para cabellos sedosos", 12500, 10, 8));
-        mercadolibre.addProduct(new Product ("Mascarilla", "Para caras sedosas", 10000, 10, 8));
+        mercadolibre.addProduct(new Product("Jabon", "Para pieles sedosas", 2500, 10, 0, 8));
+        mercadolibre.addProduct(new Product ("Shampoo", "Para cabellos sedosos", 12500, 10, 0,8));
+        mercadolibre.addProduct(new Product ("Mascarilla", "Para caras sedosas", 10000, 10, 0,8));
     }
     public void setUp2(){
         setUp1();
@@ -43,7 +43,7 @@ public class ShopTest {
         assertEquals(10, mercadolibre.getInventory().getByIndex(2).getAmount());
 
         int totalProducts = mercadolibre.getInventory().getProductsList().size();
-        mercadolibre.addProduct(new Product("Shampoo", "Para una cabello sedosa", 10000,10, 4));
+        mercadolibre.addProduct(new Product("Shampoo", "Para una cabello sedosa", 10000,10, 0,4));
 
         assertEquals(totalProducts, mercadolibre.getInventory().getProductsList().size());
     }

@@ -1,7 +1,6 @@
 package model;
 
 public enum Category
-
 {
     BOOKS,
     ELECTRONICS,
