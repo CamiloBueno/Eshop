@@ -215,12 +215,12 @@ public class Main {
                 validProcess = true;
                 return mercadolibre.simpleProductSearchStringValue(variableSearch, valueToSearch, sortOptions, false);
             } else if(variableSearch ==3){
-                System.out.print("Choose the category to search: "+showCategories());
+                System.out.println("Choose the category to search: "+showCategories());
                 int categoryIndex = Integer.parseInt(scanner.nextLine());
                 int[] sortOptions = sortProductsSearchMenu();
                 validProcess = true;
-                while(categoryIndex<0 || categoryIndex>6){
-                    System.out.print("ERROR. Choose again the category to search: "+showCategories());
+                while(categoryIndex<1 && categoryIndex>9){
+                    System.out.println("ERROR. Choose again the category to search: "+showCategories());
                     categoryIndex = Integer.parseInt(scanner.nextLine());
                 }
                 String valueToSearch = CATEGORIES[categoryIndex-1];
@@ -367,7 +367,7 @@ public class Main {
         System.out.print("Enter the amount of the product : ");
         int amount = Integer.parseInt(scanner.nextLine());
         int category = 0;
-        while(category < 1 && category > 8){
+        while(category < 1 && category > 9){
             System.out.println(showCategories());
             category = Integer.parseInt(scanner.nextLine());
         }

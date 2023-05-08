@@ -5,6 +5,7 @@ import java.util.List;
 public class Inventory {
     private ArrayList<Product> productsList;
     private SearchEngineProduct searchEngine;
+    private final String[] OPTIONS ={"name", "price", "category", "purchasedAmount"};
 
     public Inventory() {
         productsList = new ArrayList<>();
@@ -46,24 +47,37 @@ public class Inventory {
     public String simpleProductSearchNumericValue(String variableToSearchTransformed, Double valueToSearch, int[] sortOptions) {
         searchEngine.setProductList(productsList);
     Product product = searchEngine.binarySearchOfProductUsingNumericValue(valueToSearch, variableToSearchTransformed);
-    return product.toString();
+        if(product!=null){
+            return product.toString();
+        }else{
+            return "Not found";
+        }
     }
     public String simpleProductSearchStringValue(String variableToSearchTransformed, String valueToSearch, int[] sortOptions) {
         searchEngine.setProductList(productsList);
         Product product = searchEngine.binarySearchOfProductUsingStringValue(valueToSearch, variableToSearchTransformed);
-        return product.toString();
-    }
+        if(product!=null){
+            return product.toString();
+        }else{
+            return "Not found";
+        }    }
 
     public String complexProductSearchUsingNumericValues(String variableToSearch,Double min, Double max, int[] sortOptions){
         searchEngine.setProductList(productsList);
-        List resultsList = searchEngine.bsProductUsingRangeOfNumericValue(min, max, variableToSearch);
-        String result = "";
-        for (int i = 0; i < resultsList.size(); i++) {
-            result+=resultsList.get(i).toString();
-        }
+        List <Product> aux = searchEngine.bsProductUsingRangeOfNumericValue(min, max, variableToSearch);
+        String result = "Not found";
+        if(aux != null){
+            searchEngine.setProductList(new ArrayList<>(aux));
+            Boolean sort = (sortOptions[1] == 1 ? true: false);
+            ///1. Ascendent (true) y 2. Descendent (false);
+            List resultsList =  searchEngine.sortUsingAVariable(OPTIONS[sortOptions[0]-1], sort);
+            result="";
+                for (int i = 0; i < resultsList.size(); i++) {
+                    result+=resultsList.get(i).toString();
+                }
+            }
         return result;
     }
-
 }
 
 

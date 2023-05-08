@@ -88,7 +88,7 @@ public class Product {
 
     @Override
     public String toString(){
-        return "Name: "+name+" | Price: "+price+" | Amount: "+amount +" | Description: "+ description+ "\n";
+        return "Name: "+name+" | Price: "+price+" | Amount: "+amount +" | Description: "+ description+" | Purchased times: " +purchasedAmount + " | Category: "+ category+"\n";
     }
 
     public String toStringToBuyers(){

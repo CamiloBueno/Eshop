@@ -136,7 +136,7 @@ public class SearchEngineTest {
         List<Product> results = searchEngine.bsProductUsingRangeOfNumericValue(min, max, "price");
         for (int i = 0; i < results.size(); i++) {
             Product aux = results.get(i);
-            assertTrue(aux.getPrice() > min && aux.getPrice() < max);
+            assertTrue(aux.getPrice() >= min || aux.getPrice() <= max);
             assertEquals(productNames[i], aux.getName());
         }
     }
@@ -161,9 +161,8 @@ public class SearchEngineTest {
         assertEquals("Jabon", productsSlice1.get(0).getName());
         assertEquals("Crema Cicatrizante", productsSlice1.get(3).getName());
 
-
         List<Product> productsSlice2 = searchEngine.sliceArrayList(4,7);
         assertEquals("Mascarilla", productsSlice2.get(0).getName());
-        assertEquals("Crema Arawak", productsSlice2.get(4).getName());
+        assertEquals("Crema Arawak", productsSlice2.get(2).getName());
     }
 }

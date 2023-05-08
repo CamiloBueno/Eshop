@@ -1,6 +1,5 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -89,16 +88,16 @@ public class SearchEngineProduct {
     }
 
     public List<Product> sliceArrayList(int start, int end){
-        if(start>1){
-            start = start-1;
-        }
-        return productsList.subList(start, end);
+        return productsList.subList(start, end+1);
     }
 
     public List<Product> bsProductUsingRangeOfNumericValue(Double min, Double max, String typeVariable){
         int start = binarySearchOfIndexGivingANumericValue( min, typeVariable);
         int end = binarySearchOfIndexGivingANumericValue( max, typeVariable);
-        return sliceArrayList(start, end);
+        if(start != -1 && end !=-1){
+            return sliceArrayList(start, end);
+        }
+        return null;
     }
 
     public int binarySearchOfIndexGivingANumericValue(Double value, String typeVariable){
@@ -117,7 +116,7 @@ public class SearchEngineProduct {
                 low = mid+1;
             }
         }
-        return mid;
+            return mid;
     }
 
     private String getStringValueFromProductList(int index, String value){

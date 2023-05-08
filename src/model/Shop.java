@@ -6,12 +6,10 @@ public class Shop {
     private String name;
     private Inventory inventory;
     private ArrayList<Order> ordersList;
-
     private SearchEngineOrder searchEngineOrder;
 
     private final String[] OPTIONS ={"name", "price", "category", "purchasedAmount"};
     private final String[] OPTIONS_ORDER ={"buyername", "totalprice", "date"};
-
     private final String[] OPTIONS_RANGE ={ "price", "amount", "purchasedAmount"};
 
     public Shop(String name) {
@@ -78,13 +76,23 @@ public class Shop {
     public String searchOrderUsingNumericValue(int typeSearch, Double valueToSearch) {
         searchEngineOrder.setOrderlist(ordersList);
         String variableSearch = OPTIONS_ORDER[typeSearch-1];
-        return searchEngineOrder.binarySearchOfOrderUsingNumericValue(valueToSearch, variableSearch).toString();
+        Order result = searchEngineOrder.binarySearchOfOrderUsingNumericValue(valueToSearch, variableSearch);
+        if(result!=null){
+            return "RESULTS:" + result.toString();
+        }else{
+            return "Not found";
+        }
     }
 
     public String searchOrderUsingStringValue(int typeSearch, String valueToSearch) {
         searchEngineOrder.setOrderlist(ordersList);
         String variableSearch = OPTIONS_ORDER[typeSearch-1];
-        return "RESULTS: "+ searchEngineOrder.binarySearchOfOrderUsingStringValue(valueToSearch, variableSearch).toString();
+        Order result = searchEngineOrder.binarySearchOfOrderUsingStringValue(valueToSearch, variableSearch);
+        if(result!=null){
+            return "RESULTS:" + result.toString();
+        }else{
+            return "Not found";
+        }
     }
     public String getProductsList(){
         ArrayList<Product> inventoryAux = inventory.getProductsList();
